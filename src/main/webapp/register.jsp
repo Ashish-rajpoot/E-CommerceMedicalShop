@@ -9,11 +9,11 @@
 </head>
 <body>
 	<%@include file="component/navbar.jsp"%>
-
+<br><br><br>
 
 	<div class="container-fluid">
 		<div class="row mt-2">
-			<div class="col-md-4 offset-md-4">
+			<div class="col-md-6 offset-md-3">
 				<div class="card">
 					<div class="card-body px-3 ">
 						<%@include file="component/massage.jsp"%>

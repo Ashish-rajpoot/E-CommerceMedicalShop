@@ -63,6 +63,7 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect("userHome.jsp");
 				}
 			}else {
+				session.setAttribute("userNull", null);
 				session.setAttribute("errorMsg", "Invalid Ceredential !!!");
 				response.sendRedirect("login.jsp");
 			}

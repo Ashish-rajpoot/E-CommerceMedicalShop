@@ -10,7 +10,7 @@
 <body>
 	<%@include file="component/navbar.jsp"%>
 
-
+<br><br>
 
 	<div class="container-fluid">
 		<div class="row mt-5">

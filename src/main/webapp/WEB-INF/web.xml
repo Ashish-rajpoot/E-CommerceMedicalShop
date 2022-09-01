@@ -29,6 +29,12 @@
   	<servlet-class>com.mycart.servlets.LogoutServlet</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>CategoryOperationServlet</servlet-name>
+  	<display-name>CategoryOperationServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.mycart.servlets.CategoryOperationServlet</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>ProductOperationServlet</servlet-name>
   	<display-name>ProductOperationServlet</display-name>
   	<description></description>
@@ -50,6 +56,10 @@
   <servlet-mapping>
   	<servlet-name>LogoutServlet</servlet-name>
   	<url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CategoryOperationServlet</servlet-name>
+  	<url-pattern>/CategoryOperationServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>ProductOperationServlet</servlet-name>

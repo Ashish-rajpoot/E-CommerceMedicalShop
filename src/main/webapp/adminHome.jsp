@@ -1,4 +1,7 @@
 
+<%@page import="com.mycart.dao.UserDao"%>
+<%@page import="com.mycart.entity.Product"%>
+<%@page import="com.mycart.dao.ProductDao"%>
 <%@page import="com.mycart.dao.CategoryDAo"%>
 <%@page import="org.hibernate.internal.build.AllowSysOut"%>
 <%@page import="java.util.List"%>
@@ -6,11 +9,12 @@
 <%@page import="com.mycart.dao.AdminDao"%>
 <%
 User user = (User) session.getAttribute("adminObj");
+
 if (user == null) {
 	session.setAttribute("errorMsg", "Please Login !!!");
 	response.sendRedirect("login.jsp");
 	return;
-}
+} else if (user.getUserType().equals("admin")) {
 %>
 
 <%@page import="com.mycart.entity.User"%>
@@ -27,48 +31,61 @@ if (user == null) {
 </head>
 <body>
 	<%@include file="component/navbar.jsp"%>
-
-
-
+	<%
+	CategoryDAo categoryDAo = new CategoryDAo(Factory.getFactory());
+	List<Category> clist = categoryDAo.getAllCategory();
+	ProductDao productDao = new ProductDao(Factory.getFactory());
+	List<Product> plist = productDao.getAllProduct();
+	UserDao userDao = new UserDao(Factory.getFactory());
+	List<User> users = userDao.getAllUser();
+	%>
 	<div class="container admin">
 		<div class="row mt-5 ">
 			<div>
 				<%@include file="component/massage.jsp"%>
 			</div>
 			<div class="col-md-4 mt-3">
+				<a href="productoperation.jsp?category=user" style="text-decoration: none; color: black;">
 				<div class="card shadow-lg p-3 mb-5  rounded">
 					<div class="card-body text-center">
 						<div class="container ">
 							<img style="max-width: 125px;" src="img/add-user.png" alt="na">
 						</div>
-						<h3>2562</h3>
+						<h3><%=users.size()%></h3>
 						<h3>Users</h3>
 					</div>
 				</div>
+				</a>
 			</div>
 			<div class="col-md-4 mt-3">
+			<a href="productoperation.jsp?category=category" style="text-decoration: none; color: black;">
 				<div class="card shadow-lg p-3 mb-5  rounded">
 					<div class="card-body text-center">
 						<div class="container ">
 							<img style="max-width: 125px;" src="img/addProduct_2.png"
 								alt="na">
 						</div>
-						<h3>2562</h3>
+
+						<h3><%=clist.size()%></h3>
 						<h3>Category</h3>
 					</div>
 				</div>
+				</a>
 			</div>
 			<div class="col-md-4 mt-3">
-				<div class="card shadow-lg p-3 mb-5  rounded">
-					<div class="card-body text-center">
-						<div class="container ">
-							<img style="max-width: 125px;" src="img/addProduct_3.png"
-								alt="na">
+				<a href="productoperation.jsp?category=product" style="text-decoration: none; color: black;">
+					<div class="card shadow-lg p-3 mb-5  rounded">
+						<div class="card-body text-center">
+							<div class="container ">
+								<img style="max-width: 125px;" src="img/addProduct_3.png"
+									alt="na">
+
+							</div>
+							<h3><%=plist.size()%></h3>
+							<h3>Product</h3>
 						</div>
-						<h3>2562</h3>
-						<h3>Product</h3>
 					</div>
-				</div>
+				</a>
 			</div>
 		</div>
 		<div class="row mt-3">
@@ -90,7 +107,9 @@ if (user == null) {
 					data-bs-target="#addProduct">
 					<div class="card-body text-center">
 						<div class="container ">
+
 							<img style="max-width: 125px;" src=img/addProduct_1.png alt="na">
+
 						</div>
 						<p class="mt-3">Click Here To Add Category</p>
 						<h3 class="mt-3">Add Product</h3>
@@ -114,7 +133,7 @@ if (user == null) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="ProductOperationServlet" method="post"
+					<form action="CategoryOperationServlet" method="post"
 						autocomplete="off">
 						<input type="hidden" name="operation" value="category">
 						<div class="form-group">
@@ -168,7 +187,7 @@ if (user == null) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="ProductOperationServlet" method="post"
+					<form action="CategoryOperationServlet" method="post"
 						autocomplete="off" enctype="multipart/form-data">
 						<input type="hidden" name="operation" value="product">
 						<div class="input-group mb-3">
@@ -181,21 +200,23 @@ if (user == null) {
 						</div>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">Category :
-								</span>
+								<span class="input-group-text">Category : </span>
 							</div>
 							<%
-								CategoryDAo categoryDAo = new CategoryDAo(Factory.getFactory());
-								List<Category> list = categoryDAo.getAllCategory();
+							/* 							CategoryDAo categoryDAo = new CategoryDAo(Factory.getFactory());
+											List<Category> clist = categoryDAo.getAllCategory(); */
 							%>
-							
-							<select
-								name="ctId" id="ctId" class="form-select"
+
+							<select name="ctId" id="ctId" class="form-select"
 								aria-label="Default select example">
-								<% for(Category c: list) {%>
-									<option value="<%=c.getCategoryId() %>"><%=c.getCategoryTitle() %></option>
-								<%}%>
-<!-- 								<option value="admin">Admin</option>
+								<%
+								for (Category c : clist) {
+								%>
+								<option value="<%=c.getCategoryId()%>"><%=c.getCategoryTitle()%></option>
+								<%
+								}
+								%>
+								<!-- 								<option value="admin">Admin</option>
 								<option value="user">User</option> -->
 							</select>
 						</div>
@@ -259,7 +280,8 @@ if (user == null) {
 
 	<!-- End Add Product Modal -->
 
-
-
+	<%
+	}
+	%>
 </body>
 </html>

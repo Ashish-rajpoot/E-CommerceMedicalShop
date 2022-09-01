@@ -45,7 +45,7 @@ function increseProductById(pId) {
 		localStorage.setItem("cart", JSON.stringify(pCart));
 		showToast(oldProduct.productName + "'s Quantity is Incresed to ( " + oldProduct.productQuantity + " )");
 	}
-updateCart();
+	updateCart();
 }
 
 /* Update Cart*/
@@ -59,7 +59,7 @@ function updateCart() {
 
 		$(".cart-btn").html("( 0 )");
 		$(".cart-body").html("<h3> Cart is Empty</h3>");
-		$(".checkout-btn").attr("disabled",true);
+		$(".checkout-btn").addClass("disabled");
 
 	} else {
 
@@ -73,7 +73,9 @@ function updateCart() {
       <th scope="col">Price</th>
       <th scope="col">Quantity</th>
       <th scope="col">Total Price</th>
+      <th scope="col"></th>
        <th scope="col">Action</th>
+       <th scope="col"></th>
     </tr>
   </thead>
   		
@@ -108,7 +110,6 @@ function updateCart() {
 			</tr>	
 		</table>`
 		$(".cart-body").html(table);
-		$(".checkout-btn").attr("disabled",false);
 	}
 
 }
@@ -163,17 +164,3 @@ function showToast(content) {
 		$("#toast").removeClass("display");
 	}, 2000);
 }
-
-function goToCheckout(){
-	window.location = 'checkout.jsp';
-}
-
-
-
-
-
-
-
-
-
-
