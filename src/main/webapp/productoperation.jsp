@@ -174,7 +174,7 @@
 						<a href="update.jsp?userId=<%=c.getUserId() %>" class="btn btn-outline-warning" type="submit"
  >
 							Profile</a>
-							<a href="CategoryOperationServlet?deletecategoryid=<%=c.getUserId() %>" class="btn btn-outline-danger" type="submit"
+							<a href="ProductOperationServlet?deleteUserId=<%=c.getUserId() %>" class="btn btn-outline-danger" type="submit"
  >
 							Delete User</a>
 					</td>

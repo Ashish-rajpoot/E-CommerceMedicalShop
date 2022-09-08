@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>com.mycart.servlets.ProductOperationServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Payment</servlet-name>
+  	<display-name>Payment</display-name>
+  	<description></description>
+  	<servlet-class>com.mycart.servlets.Payment</servlet-class>
+  </servlet>
   
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
@@ -64,6 +70,10 @@
   <servlet-mapping>
   	<servlet-name>ProductOperationServlet</servlet-name>
   	<url-pattern>/ProductOperationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Payment</servlet-name>
+  	<url-pattern>/Payment</url-pattern>
   </servlet-mapping>
   
 </web-app>

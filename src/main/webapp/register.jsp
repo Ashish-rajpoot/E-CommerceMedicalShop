@@ -54,10 +54,9 @@
 							</div>
 							<div class="form-group">
 								<label for="address">User Address</label>
-								<textarea name="address" style="height: 100px"
-									class="form-control" id="username"
-									placeholder="Enter your Address" required="required">
-				</textarea>
+								<input type="text" name="address"
+						style="height: 100px" class="form-control" id="username"
+						placeholder="Enter your Address" required="required">
 							</div>
 							<div class="form-group">
 								Already Have a Account? <a href="login.jsp"> Login</a>

@@ -100,11 +100,10 @@ public class UserDao {
 	 }
 	 
 //	 Delete Category By Id
-		 public int deleteCategory( int uId) {
-			 boolean f = false;
+		 public int deleteUser( int uId) {
 				Session session = this.factory.openSession();
 			 Transaction tx=session.beginTransaction();  
-			 Query q=session.createQuery("delete User where userId=:i");  
+			 Query q=session.createQuery("delete User as u where u.userId=:i");  
 			 q.setParameter("i",uId);  
 			   
 			 int status=q.executeUpdate();  

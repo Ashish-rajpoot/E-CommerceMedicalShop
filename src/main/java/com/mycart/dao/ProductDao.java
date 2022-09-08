@@ -1,6 +1,10 @@
 package com.mycart.dao;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -79,10 +83,7 @@ public class ProductDao {
 		q.setParameter("f", pQuantity);
 		q.setParameter("g", category);
 		q.setParameter("h", pId);
-
 		int status = q.executeUpdate();
-
-		System.out.println(status);
 		tx.commit();
 		return status;
 	}
@@ -94,10 +95,7 @@ public class ProductDao {
 		Transaction tx = session.beginTransaction();
 		Query q = session.createQuery("delete Product as p where p.pId=:i");
 		q.setParameter("i", pId);
-
 		int status = q.executeUpdate();
-
-		System.out.println(status);
 		tx.commit();
 		return status;
 	}
@@ -109,16 +107,30 @@ public class ProductDao {
 		Transaction tx = session.beginTransaction();
 		Query q = session.createQuery("delete Product as p where p.category.CategoryId=:i");
 		q.setParameter("i", ctid);
-		
 		int status = q.executeUpdate();
-		
-		System.out.println(status);
 		tx.commit();
 		return status;
 	}
 	
-	
-	
+	public List<Product> sortedProducts(){
+		List<Product> list =new ArrayList<Product>(getAllProduct());
+		List<Product> sortedList = list.stream().sorted(Comparator.comparing(Product::getpName)).collect(Collectors.toList());
+		return sortedList;
+	}
+	public List<Product> reversSortedProducts(){
+		List<Product> list =new ArrayList<Product>(getAllProduct());
+		List<Product> sortedList = list.stream().sorted(Comparator.comparing(Product::getpName).reversed()).collect(Collectors.toList());
+		return sortedList;
+	}
+
+	// Get Product by Category id
+	public List<Product> searchAllProductLike(String ProductLike) {
+		Session session = this.factory.openSession();
+		Query query = session.createQuery("from Product as p where p.pName like :e");
+		query.setParameter("e", "%"+ProductLike+"%");
+		List<Product> list = query.list();
+		return list;
+	}	
 
 //	Get Product by %name% : not Working
 	public List<Product> getProductByCategoryByName(String searchMed) {

@@ -169,10 +169,43 @@ function goToCheckout(){
 }
 
 
+const paymentStart = ()=>{
+	console.log("payment Start"); 
+	let amount = $("#payment_field").val();
+	console.log(amount);
+
+	if(amount=="" || amount==null){
+		console.log("please enter amount");
+	}
+
+	$.ajax(
+	{
+		url:'/E-CommerceMedicalShop/Payment',
+		data:JSON.stringify({amount:amount,"name":"ashish"}),
+		contentType:'application/json',
+		type:'POST',
+		dataType:'json',
+		success:function(response){
+			console.lot("Success msg")
+		},
+		error:function(error){
+			alert("Some thing went wrong");
+			console.log(error);
+		}
+	}
+	)
+}
 
 
-
-
+function active(){
+let cateName=	$("#ctid").val();
+		console.log(cateName);
+let Name=	$("#ctid").val();
+	if(cateName == Name){
+		$("#ctid").addClass(active)
+		console.log('ok');
+	}
+}
 
 
 

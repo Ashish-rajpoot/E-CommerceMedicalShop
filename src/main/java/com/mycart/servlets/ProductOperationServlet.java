@@ -3,6 +3,7 @@ package com.mycart.servlets;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,6 +17,7 @@ import com.mycart.dao.CategoryDAo;
 import com.mycart.dao.ProductDao;
 import com.mycart.dao.UserDao;
 import com.mycart.entity.Category;
+import com.mycart.entity.Product;
 import com.mycart.entity.User;
 import com.sessionfactory.Factory;
 
@@ -40,25 +42,33 @@ public class ProductOperationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("in Product Operation Servlet");
 		HttpSession session = request.getSession();
 		String op = request.getParameter("operation");
 		String nam= request.getParameter("pName");
-		System.out.println(op);
-		if (op == null) {
-			System.out.println(nam);
+		
+		if(op==null) {
+		try {
+			String deleteUserId = request.getParameter("deleteUserId");
+			String path2 = request.getContextPath() + "/ProductOperationServlet?deleteUserId=" + deleteUserId;
+			if (path2.equals(request.getContextPath() + "/ProductOperationServlet?deleteUserId=" + deleteUserId)) {
+				int deleteUserById = Integer.parseInt(deleteUserId);
+				UserDao userDao = new UserDao(Factory.getFactory());
+				userDao.deleteUser(deleteUserById);
+				session.setAttribute("successMsg", "User Deleted SuccessFully !!!");
+				response.sendRedirect("productoperation.jsp?category=user");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		}
+	if (op == null) {
 			System.out.println(op);
 			try {
 		String deleteProductId = request.getParameter("deleteProductId");
 		String path = request.getContextPath() + "/ProductOperationServlet?deleteProductId=" + deleteProductId;
 				if (path.equals(request.getContextPath() + "/ProductOperationServlet?deleteProductId=" + deleteProductId)) {
-					System.out.println("ok" + path);
 					int deleteProductById = Integer.parseInt(deleteProductId);
-					
-					/*
-					 * CategoryDAo categoryDAo = new CategoryDAo(Factory.getFactory()); int status =
-					 * categoryDAo.deleteCategory(ctid);
-					 */
 					ProductDao productDao = new ProductDao(Factory.getFactory());
 					productDao.deleteProductById(deleteProductById);
 					session.setAttribute("successMsg", "Product Deleted SuccessFully !!!");
@@ -68,7 +78,8 @@ public class ProductOperationServlet extends HttpServlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		}  else if (op.trim().equals("updateProduct")) {
+		}  
+	else if (op.trim().equals("updateProduct")) {
 
 				System.out.println(op);
 				try {
@@ -137,9 +148,78 @@ public class ProductOperationServlet extends HttpServlet {
 					session.setAttribute("errorMsg", " Error Occur while Updating User !!!");
 					response.sendRedirect("adminHome.jsp");
 				}
+			}else if (op.trim().equals("updateUserProfile")) {
+				
+				System.out.println(op);
+				try {
+					
+					int uId = Integer.parseInt(request.getParameter("uId"));
+					String uName = request.getParameter("username").trim();
+					String uType= request.getParameter("type");
+					String uEmail =request.getParameter("email");
+					String uPass = request.getParameter("password");
+					String uPhone = request.getParameter("phone").trim();
+					String uAddress = request.getParameter("address").trim();
+					
+					UserDao userDao = new UserDao(Factory.getFactory());
+					int oneUser = userDao.updateUser(uName, uType, uEmail, uPass, uPhone, uAddress, uId);
+					
+					session.setAttribute("successMsg", "User UpdatedSuccessFully !!!");
+					response.sendRedirect("userHome.jsp");
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+					session.setAttribute("errorMsg", " Error Occur while Updating User !!!");
+					response.sendRedirect("profile.jsp");
+				}
+			}else if (op.trim().equals("updateAdminProfile")) {
+				
+				System.out.println(op);
+				try {
+					
+					int uId = Integer.parseInt(request.getParameter("uId"));
+					String uName = request.getParameter("username").trim();
+					String uType= request.getParameter("type");
+					String uEmail =request.getParameter("email");
+					String uPass = request.getParameter("password");
+					String uPhone = request.getParameter("phone").trim();
+					String uAddress = request.getParameter("address").trim();
+					
+					UserDao userDao = new UserDao(Factory.getFactory());
+					int oneUser = userDao.updateUser(uName, uType, uEmail, uPass, uPhone, uAddress, uId);
+					
+					session.setAttribute("successMsg", "User UpdatedSuccessFully !!!");
+					response.sendRedirect("adminHome.jsp");
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+					session.setAttribute("errorMsg", " Error Occur while Updating User !!!");
+					response.sendRedirect("profile.jsp");
+				}
 
 			} 
- 
+			
+			 else if (op.trim().equals("contain")) {
+			 
+			 System.out.println(op); try {
+			 
+			  
+			  String searchDataString = request.getParameter("contain").trim();
+			  
+			  ProductDao productDao = new ProductDao(Factory.getFactory()); List<Product>
+			  customSearch = productDao.searchAllProductLike(searchDataString);
+			  
+			  session.setAttribute("customSearch", customSearch);
+			  response.sendRedirect("index.jsp?category="+customSearch);
+			  
+			  } catch (Exception e) { // TODO: handle exception e.printStackTrace();
+			  session.setAttribute("errorMsg", " Error Occur while Updating User !!!");
+			  response.sendRedirect("index.jsp"); }
+			  
+			  }
+			  
 		
 	}
 

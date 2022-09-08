@@ -55,10 +55,12 @@
                             </textarea>
 							</div>
 							<div class="container text-center">
-								<button type="submit" class="btn btn-outline-success">Order Now</button>
+								<button  type="submit" class="btn btn-outline-success">Order Now</button>
 								<button type="submit" class="btn btn-outline-primary">Continue Shopping</button>
 							</div>
 						</form>
+						
+						
 					</div>
 				</div>
 
@@ -68,5 +70,6 @@
 		</div>
 
 	</div>
+						
 </body>
 </html>
