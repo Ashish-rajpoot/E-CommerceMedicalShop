@@ -181,7 +181,7 @@ const paymentStart = ()=>{
 	$.ajax(
 	{
 		url:'/E-CommerceMedicalShop/Payment',
-		data:JSON.stringify({amount:amount,"name":"ashish"}),
+		data:JSON.stringify(amount),
 		contentType:'application/json',
 		type:'POST',
 		dataType:'json',
@@ -210,3 +210,6 @@ let Name=	$("#ctid").val();
 
 
 
+/*$(document).ready(function() {
+	window.location='index.jsp?category="all"';
+});*/

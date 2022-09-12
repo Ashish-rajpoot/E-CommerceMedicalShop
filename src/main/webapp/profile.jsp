@@ -73,31 +73,31 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="username">User Name</label> <input type="text"
+					<label for="username">Change Admin Name</label> <input type="text"
 						name="username" value="<%=oneUser.getUserName() %>"
 						class="form-control" id="username" placeholder="username"
 						required="required">
 				</div>
 				<div class="form-group">
-					<label for="email">Admin Email</label> <input type="email"
+					<label for="email">Change Admin Email</label> <input type="email"
 						name="email" value="<%=oneUser.getUserEmail() %>"
 						class="form-control" id="email" placeholder="email"
 						required="required">
 				</div>
 				<div class="form-group">
-					<label for="password">Admin Password</label> <input type="password"
+					<label for="password">Change Admin Password</label> <input type="password"
 						name="password" value="<%=oneUser.getUserPass() %>"
 						class="form-control" id="password" placeholder="password"
 						required="required">
 				</div>
 				<div class="form-group">
-					<label for="phone">Admin Phone</label> <input type="number"
+					<label for="phone">Change Admin Phone</label> <input type="number"
 						name="phone" value="<%=oneUser.getUserPhone() %>"
 						class="form-control" id="phone" placeholder="phone"
 						required="required">
 				</div>
 				<div class="form-group">
-					<label for="address">Admin Address</label>
+					<label for="address">Change Admin Address</label>
 					<input type="text" name="address" value="<%=oneUser.getUserAddress()%>"
 						style="height: 100px" class="form-control" id="username"
 						placeholder="Enter your Address" required="required">
@@ -122,7 +122,7 @@
 
 <c:if test="${not empty userObj }">
 
-	<div> User</div>
+
 	
 	<%
 	User user = (User) session.getAttribute("userObj");
@@ -138,13 +138,13 @@
 				method="post">
 				<input type="hidden" name="operation" value="updateUserProfile">
 								<div class="form-group">
-					<label for="username">User Id</label> <input type="hidden"
+					<label for="username"></label> <input type="hidden"
 						name="uId" value="<%=oneUser.getUserId() %>"
 						class="form-control" id="username" placeholder="username"
-						required="required" readonly="readonly" >
+						required="required" readonly="readonly"  >
 				</div>
 				<div class="form-group">
-					<label class="form-label" for="type">Choose a Role:</label> <select
+					<label class="form-label" for="type">Role:</label> <select
 						name="type" id="role" class="form-select"
 						aria-label="Default select example">
 						<!-- <option value="admin">Admin</option> -->
@@ -152,31 +152,31 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="username">User Name</label> <input type="text"
+					<label for="username">Change User Name</label> <input type="text"
 						name="username" value="<%=oneUser.getUserName() %>"
 						class="form-control" id="username" placeholder="username"
 						required="required">
 				</div>
 				<div class="form-group">
-					<label for="email">User Email</label> <input type="email"
+					<label for="email">Change User Email</label> <input type="email"
 						name="email" value="<%=oneUser.getUserEmail() %>"
 						class="form-control" id="email" placeholder="email"
 						required="required">
 				</div>
 				<div class="form-group">
-					<label for="password">User Password</label> <input type="password"
+					<label for="password">Change User Password</label> <input type="password"
 						name="password" value="<%=oneUser.getUserPass() %>"
 						class="form-control" id="password" placeholder="password"
 						required="required">
 				</div>
 				<div class="form-group">
-					<label for="phone">User Phone</label> <input type="number"
+					<label for="phone">Change User Phone</label> <input type="number"
 						name="phone" value="<%=oneUser.getUserPhone() %>"
-						class="form-control" id="phone" placeholder="phone"
+						class="form-control"  id="phone" placeholder="phone"
 						required="required">
 				</div>
 				<div class="form-group">
-					<label for="address">User Address</label>
+					<label for="address">Change User Address</label>
 					<input type="text" name="address" value="<%=oneUser.getUserAddress()%>"
 						style="height: 100px" class="form-control" id="username"
 						placeholder="Enter your Address" required="required">

@@ -33,26 +33,6 @@
 	List<Product> sortedList = productDao.sortedProducts();
 	List<Product> reversSortedList = productDao.reversSortedProducts();
 
-	/* try {
-		if (cate.equals("all") || cate.equals(null)) {
-			
-			plist = productDao.getAllProduct();
-		} else if (cate.equals("atoz")) {
-			plist = productDao.sortedProducts();
-		} else if (cate.equals("ztoa")) {
-			plist = productDao.reversSortedProducts();
-		}else {
-			if(!contain.equals(null) || !contain.isEmpty()){
-		plist = productDao.searchAllProductLike(contain);
-			}else{
-		
-			plist = productDao.getAllProductByCategoryId(Integer.parseInt(cate));
-			}
-		}
-	} catch (Exception e) {
-		plist = productDao.getAllProduct();
-	}
-	 */
 	%>
 
 	<div class="container">
@@ -154,9 +134,9 @@
 								}
 								%>
 
-							<!--  Search product by keyWord  -->
+								<!--  Search product by keyWord  -->
 
-								
+
 
 								<%
 								try {
@@ -215,13 +195,16 @@
 												/*  Empty Product */
 												if (plist.size() == 0) {
 												%>
-												<div class="container mx-5 ">
+												<div class="container  ">
 													<div class="row mx-5">
 														<div class="col-md-4 mx-5">
 															<img alt="emptyCart" src="img/cart_empty.png"
 																class=" d-block mx-5" />
 														</div>
 													</div>
+												</div>
+												<div>
+												
 												</div>
 												<%
 												}

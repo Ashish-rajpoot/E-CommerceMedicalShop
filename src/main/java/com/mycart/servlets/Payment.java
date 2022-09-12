@@ -42,6 +42,8 @@ public class Payment extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("application/json");
 		System.out.println("payment servlet");
+		String amoutString = request.getParameter("data");
+		System.out.println(amoutString);
 	
 
 

@@ -203,23 +203,29 @@ public class ProductOperationServlet extends HttpServlet {
 			
 			 else if (op.trim().equals("contain")) {
 			 
-			 System.out.println(op); try {
-			 
-			  
-			  String searchDataString = request.getParameter("contain").trim();
-			  
-			  ProductDao productDao = new ProductDao(Factory.getFactory()); List<Product>
-			  customSearch = productDao.searchAllProductLike(searchDataString);
-			  
-			  session.setAttribute("customSearch", customSearch);
-			  response.sendRedirect("index.jsp?category="+customSearch);
-			  
-			  } catch (Exception e) { // TODO: handle exception e.printStackTrace();
-			  session.setAttribute("errorMsg", " Error Occur while Updating User !!!");
-			  response.sendRedirect("index.jsp"); }
-			  
+			 System.out.println(op);
+//			 try {
+//			 
+//			  
+//			  String searchDataString = request.getParameter("contain").trim();
+//			  
+//			  ProductDao productDao = new ProductDao(Factory.getFactory()); List<Product>
+//			  customSearch = productDao.searchAllProductLike(searchDataString);
+//			  if (customSearch.size()>0) {
+//				  session.setAttribute("errorMsg", "No Product Avilable for the Search... ");
+//				  response.sendRedirect("index.jsp");
+//			} else {
+//				session.setAttribute("customSearch", customSearch);
+//				response.sendRedirect("index.jsp?category="+customSearch);
+//				
+//			}
+//			  
+//			  } catch (Exception e) { // TODO: handle exception e.printStackTrace();
+//			  session.setAttribute("errorMsg", " Error Occur while Updating User !!!");
+//			  response.sendRedirect("index.jsp"); }
+//			  
 			  }
-			  
+//			  
 		
 	}
 
