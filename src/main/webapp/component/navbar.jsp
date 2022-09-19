@@ -46,9 +46,8 @@
 						href="register.jsp">Register </a></li>
 				</ul>
 			</div>
-	</div>
-</nav>
-</c:if>
+		</c:if>
+
 
 
 <c:if test="${not empty adminObj }">
@@ -80,8 +79,7 @@
 				href="LogoutServlet">Logout </a></li>
 		</ul>
 	</div>
-	</div>
-	</nav>
+	
 </c:if>
 
 
@@ -119,6 +117,6 @@
 				href="LogoutServlet">Logout </a></li>
 		</ul>
 	</div>
+</c:if>
 	</div>
 	</nav>
-</c:if>
