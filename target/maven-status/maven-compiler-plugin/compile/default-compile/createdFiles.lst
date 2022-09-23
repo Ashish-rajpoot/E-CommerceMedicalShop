@@ -1,12 +1,15 @@
 com\mycart\entity\User.class
+META-INF\MANIFEST.MF
 com\mycart\servlets\ProductOperationServlet.class
 com\mycart\dao\CategoryDAo.class
 com\sessionfactory\Factory.class
 com\sessionfactory\Helper.class
+META-INF\maven\com.ecommerce\E-CommerceMedicalShop\pom.xml
 com\mycart\dao\ProductDao.class
 com\mycart\entity\Category.class
 com\mycart\servlets\CategoryOperationServlet.class
 com\mycart\servlets\Payment.class
+META-INF\maven\com.ecommerce\E-CommerceMedicalShop\pom.properties
 com\mycart\servlets\LogoutServlet.class
 com\mycart\dao\AdminDao.class
 com\mycart\entity\Product.class

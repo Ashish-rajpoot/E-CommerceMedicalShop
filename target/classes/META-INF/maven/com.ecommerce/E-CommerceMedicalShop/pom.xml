@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ecommerce</groupId>
 	<artifactId>E-CommerceMedicalShop</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>E-CommerceMedicalShop Maven Webapp</name>
 	<url>http://maven.apache.org</url>
@@ -53,7 +53,11 @@
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>2.0.0</version>
+		</dependency>
 
 	</dependencies>
 
