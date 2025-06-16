@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-workflow
+  namespace: namespace-workflow-1750044735782
+  labels:
+    app.kubernetes.io/name: k8s-workflow
+    kubernetes.azure.com/generator: devhub
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: k8s-workflow
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
