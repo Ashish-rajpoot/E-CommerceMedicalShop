@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: k8s-workflow-config
-  namespace: namespace-workflow-1750044735782
+  name: abc-config
+  namespace: namespace-workflow-1750045370759
   labels:
-    app.kubernetes.io/name: k8s-workflow
+    app.kubernetes.io/name: abc
     kubernetes.azure.com/generator: devhub
 data:
